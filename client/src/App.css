@@ -1,0 +1,256 @@
+/* client/src/App.css */
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c); /* Deep blue to red gradient */
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.App {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  /* Add a subtle background color or keep it transparent for the gradient */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly see-through white */
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow for depth */
+}
+
+.App-header {
+  background: linear-gradient(to right, #2c3e50, #4a6491); /* Gradient header */
+  padding: 20px;
+  color: white;
+  margin-bottom: 30px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.App-header h1 {
+  font-size: 2.5rem; /* Larger, bolder title */
+  letter-spacing: 1px; /* Slightly spaced letters */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* Space between editor and history */
+}
+
+.error-message {
+  color: #e74c3c; /* Red error color */
+  background-color: #fadbd8; /* Light red background */
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 15px; /* Center and add bottom margin */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Animation for error message */
+  animation: fadeInDown 0.5s ease-out;
+}
+
+/* Editor Container */
+.editor-container {
+  width: 100%;
+  max-width: 600px; /* Limit width for better readability */
+  padding: 25px;
+  background-color: #ecf0f1; /* Light grey background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.editor-container:hover {
+  transform: translateY(-2px); /* Lift slightly on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.editor-container h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  resize: vertical; /* Allow vertical resizing only */
+  transition: border-color 0.3s ease; /* Smooth border color change */
+  margin-bottom: 15px;
+}
+
+textarea:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #3498db; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2); /* Blue glow */
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #27ae60, #2ecc71); /* Green gradient */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transitions for all properties */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover:not(:disabled) {
+  background: linear-gradient(to right, #219653, #27ae60); /* Darker green on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98); /* Slightly shrink on click */
+}
+
+button:disabled {
+  background: #95a5a6; /* Grey background when disabled */
+  cursor: not-allowed;
+  transform: none; /* No hover effects when disabled */
+}
+
+.delete-btn {
+  background: linear-gradient(to right, #e74c3c, #c0392b); /* Red gradient */
+  padding: 8px 15px; /* Smaller padding for delete button */
+  font-size: 0.9rem; /* Smaller font */
+  margin-top: 10px; /* Space above the delete button */
+  align-self: flex-start; /* Align button to the start of its container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: linear-gradient(to right, #c0392b, #a93226); /* Darker red on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* History Container */
+.history-container {
+  width: 100%;
+  max-width: 600px; /* Match editor width */
+  padding: 25px;
+  background-color: #f8f9fa; /* Light grey background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.history-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.history-container h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 1.5rem;
+}
+
+.version-list {
+  list-style-type: none;
+  padding: 0;
+  max-height: 500px; /* Set a max height and enable scrolling */
+  overflow-y: auto;
+}
+
+.version-item {
+  background-color: white;
+  margin: 15px 0;
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  /* Animation for new version items */
+  animation: fadeInUp 0.5s ease-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.version-item:hover {
+   transform: scale(1.01); /* Slight enlargement on hover */
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+}
+
+.version-item p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.version-item strong {
+  color: #2c3e50;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .App-header h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    gap: 20px;
+  }
+
+  .editor-container,
+  .history-container {
+    padding: 20px;
+  }
+
+  textarea {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
